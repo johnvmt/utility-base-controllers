@@ -1,0 +1,18 @@
+{
+  "name": "utility-base-controllers",
+  "version": "1.0.0",
+  "description": "Base controllers incorporating stores, event emitters and more",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnvmt/utility-base-controllers.git"
+  },
+  "private": false,
+  "main": "src/exports.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cancelable-event-emitter": "^1.0.0",
+    "object-subscriptions": "^1.0.3"
+  }
+}
