@@ -1,6 +1,6 @@
 {
   "name": "utility-base-controllers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Base controllers incorporating stores, event emitters and more",
   "repository": {
     "type": "git",

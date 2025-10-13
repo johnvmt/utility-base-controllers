@@ -35,6 +35,14 @@ class BaseStoreController extends BaseController {
 	}
 
 	/**
+	 * Remove a subscription (cancel function) if it is no longer needed
+	 * @param cancelSubscription
+	 */
+	removeSubscription(cancelSubscription) {
+		this._subscriptions.delete(cancelSubscription);
+	}
+
+	/**
 	 * Cancel all subscriptions when the controller is removed from the DOM
 	 */
 	destroy() {
