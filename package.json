@@ -1,6 +1,6 @@
 {
   "name": "utility-base-controllers",
-  "version": "1.0.1",
+  "version": "1.0.7",
   "description": "Base controllers incorporating stores, event emitters and more",
   "repository": {
     "type": "git",
@@ -8,11 +8,12 @@
   },
   "private": false,
   "main": "src/exports.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "cancelable-event-emitter": "^1.0.0",
+    "simple-utility-event-emitter": "^1.0.0",
     "object-subscriptions": "^1.0.3"
   }
 }

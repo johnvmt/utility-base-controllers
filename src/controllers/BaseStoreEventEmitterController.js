@@ -13,7 +13,7 @@ class BaseStoreEventEmitterController extends BaseEventEmitterController {
 
 		this._store = options.store
 			? options.store
-			: new NestedObjectWithSubscriptions(options.value ?? {});
+			: new NestedObjectWithSubscriptions(options.storeValue ?? {}, options.storeOptions ?? {});
 
 		this._subscriptions = new Set();
 	}
@@ -24,36 +24,6 @@ class BaseStoreEventEmitterController extends BaseEventEmitterController {
 	 */
 	get store() {
 		return this._store;
-	}
-
-	/**
-	 * Add a subscription (cancel function) to call when destroyed
-	 * @param cancelSubscription
-	 */
-	addSubscription(cancelSubscription) {
-		this._subscriptions.add(cancelSubscription);
-	}
-
-	/**
-	 * Remove a subscription (cancel function) if it is no longer needed
-	 * @param cancelSubscription
-	 */
-	removeSubscription(cancelSubscription) {
-		this._subscriptions.delete(cancelSubscription);
-	}
-
-	/**
-	 * Cancel all subscriptions when the controller is removed from the DOM
-	 */
-	destroy() {
-		for(let cancelSubscription of this._subscriptions) {
-			try {
-				cancelSubscription();
-			}
-			catch(error) {
-				this.log("error", `Error in callback during store controller destruction: ${error.message}`);
-			}
-		}
 	}
 }
 

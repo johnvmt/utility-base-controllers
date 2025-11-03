@@ -6,6 +6,7 @@
 class BaseController {
 	constructor(options = {}) {
 		this._options = options;
+        this._subscriptions = new Set();
 	}
 
 	/**
@@ -41,6 +42,38 @@ class BaseController {
 		if(this.logger)
 			this.logger[severity](...messageParts);
 	}
+
+    /**
+     * Add a subscription (cancel function) to call when destroyed
+     * @param cancelSubscription
+     */
+    addSubscription(cancelSubscription) {
+        this._subscriptions.add(cancelSubscription);
+    }
+
+    /**
+     * Remove a subscription (cancel function) if it is no longer needed
+     * @param cancelSubscription
+     */
+    removeSubscription(cancelSubscription) {
+        this._subscriptions.delete(cancelSubscription);
+    }
+
+    /**
+     * Cancel all subscriptions when the controller is removed from the DOM
+     */
+    destroy() {
+        for(let cancelSubscription of this._subscriptions) {
+            try {
+                cancelSubscription();
+            }
+            catch(error) {
+                this.log("error", `Error in callback during store controller destruction: ${error.message}`);
+            }
+        }
+
+        this._subscriptions.clear();
+    }
 }
 
 export default BaseController;
